@@ -67,12 +67,33 @@ footer { padding: 10px 20px 50px; text-align: center; color: #918a99; font-size:
 .authSubmit:disabled { opacity: .65; cursor: wait; }
 .authBack { display: inline-block; margin-top: 24px; color: #6f6578; font-size: 14px; }
 .dashboardShell { width: min(980px, 100%); padding: 38px; }
+.wideDashboard { width: min(1120px, 100%); }
 .dashboardTopbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-.secondaryAction { border: 1px solid #ddd5e6; background: #fff; border-radius: 12px; padding: 10px 15px; cursor: pointer; font-weight: 800; }
+.secondaryAction { display: inline-flex; align-items: center; justify-content: center; border: 1px solid #ddd5e6; background: #fff; border-radius: 12px; padding: 10px 15px; cursor: pointer; font-weight: 800; }
 .adminGrid { margin-top: 30px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.adminGrid article { border: 1px solid #e7e1ed; border-radius: 16px; padding: 22px; background: #fbf9fd; display: grid; gap: 8px; }
+.adminGrid article, .adminCardLink { border: 1px solid #e7e1ed; border-radius: 16px; padding: 22px; background: #fbf9fd; display: grid; gap: 8px; }
+.adminCardLink { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.adminCardLink:hover { transform: translateY(-2px); border-color: #cfc2e0; box-shadow: 0 10px 24px rgba(67, 49, 91, .08); }
 .adminGrid strong { font-size: 19px; }
 .adminGrid span { color: #716b79; font-size: 14px; line-height: 1.6; }
+.adminPageHeader { margin-top: 22px; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; }
+.adminPageHeader h1 { margin-bottom: 6px; }
+.adminPageHeader p { margin: 0; color: #716b79; }
+.memberSummary { padding: 9px 13px; border-radius: 999px; background: #eee7fb; color: #6544b4; font-size: 14px; font-weight: 900; white-space: nowrap; }
+.memberToolbar { margin-top: 24px; display: flex; gap: 10px; }
+.memberToolbar input { flex: 1; min-height: 44px; border: 1px solid #ddd5e6; border-radius: 11px; padding: 0 14px; font-size: 15px; outline: none; }
+.memberToolbar input:focus { border-color: #7650d8; box-shadow: 0 0 0 3px rgba(118, 80, 216, .10); }
+.adminNotice { margin-top: 16px; padding: 12px 14px; border-radius: 11px; background: #f1ebfb; color: #5e419d; font-size: 14px; font-weight: 700; }
+.adminEmpty { margin-top: 20px; padding: 34px 20px; border: 1px dashed #d9cfdf; border-radius: 14px; text-align: center; color: #716b79; }
+.memberTableWrap { margin-top: 18px; overflow-x: auto; border: 1px solid #e8e1ed; border-radius: 15px; }
+.memberTable { width: 100%; border-collapse: collapse; min-width: 720px; }
+.memberTable th, .memberTable td { padding: 15px 16px; border-bottom: 1px solid #eee8f2; text-align: left; vertical-align: middle; }
+.memberTable th { background: #faf8fc; color: #665e6e; font-size: 13px; }
+.memberTable tr:last-child td { border-bottom: 0; }
+.memberName { font-weight: 800; }
+.meBadge { display: inline-block; margin-top: 5px; padding: 3px 7px; border-radius: 999px; background: #eee7fb; color: #6846b5; font-size: 11px; font-weight: 900; }
+.roleSelect { min-width: 112px; min-height: 38px; border: 1px solid #ddd5e6; border-radius: 9px; padding: 0 9px; background: #fff; font-weight: 700; }
+.roleSelect:disabled { background: #f4f1f6; color: #8b838f; }
 
 @media (max-width: 800px) {
   .siteHeader { width: calc(100% - 32px); min-height: 66px; }
@@ -89,6 +110,8 @@ footer { padding: 10px 20px 50px; text-align: center; color: #918a99; font-size:
   .ctaBox { padding: 30px 24px; flex-direction: column; align-items: flex-start; }
   .authCard, .dashboardShell { padding: 28px 22px; }
   .adminGrid { grid-template-columns: 1fr; }
+  .adminPageHeader { align-items: flex-start; flex-direction: column; }
+  .memberToolbar { flex-direction: column; }
 }
 
 @media (max-width: 480px) {

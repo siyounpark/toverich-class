@@ -41,6 +41,8 @@ export default function AdminPage() {
     router.refresh()
   }
 
+  const go = (path: string) => router.push(path)
+
   return (
     <main className="dashboardPage">
       <section className="dashboardShell">
@@ -56,10 +58,22 @@ export default function AdminPage() {
         <p>{status}</p>
 
         <div className="adminGrid">
-          <a className="adminCardLink" href="/admin/members"><strong>회원 관리</strong><span>회원 목록과 관리자/수강생 정보를 관리합니다.</span></a>
-          <a className="adminCardLink" href="/admin/enrollments"><strong>수강권한 관리</strong><span>결제 확인 후 과목별 수강권한을 부여합니다.</span></a>
-          <a className="adminCardLink" href="/admin/courses"><strong>강의 관리</strong><span>과목과 차시별 영상을 등록합니다.</span></a>
-          <a className="adminCardLink" href="/admin/resources"><strong>자료실 관리</strong><span>각 강의별 PDF, 챗봇, 링크, 파일을 등록합니다.</span></a>
+          <button type="button" className="adminCardButton" onClick={() => go('/admin/members')}>
+            <strong>회원 관리</strong>
+            <span>회원 목록과 관리자/수강생 정보를 관리합니다.</span>
+          </button>
+          <button type="button" className="adminCardButton" onClick={() => go('/admin/enrollments')}>
+            <strong>수강권한 관리</strong>
+            <span>결제 확인 후 과목별 수강권한을 부여합니다.</span>
+          </button>
+          <button type="button" className="adminCardButton" onClick={() => go('/admin/courses')}>
+            <strong>강의 관리</strong>
+            <span>과목과 차시별 영상을 등록합니다.</span>
+          </button>
+          <button type="button" className="adminCardButton" onClick={() => go('/admin/resources')}>
+            <strong>자료실 관리</strong>
+            <span>각 강의별 PDF, 챗봇, 링크, 파일을 등록합니다.</span>
+          </button>
         </div>
       </section>
     </main>

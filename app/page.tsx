@@ -27,9 +27,9 @@ export default function Home() {
         <div className="brand">TOVERICH <span>CLASS</span></div>
         <nav>
           <a href="#courses">전체 강의</a>
-          <a href="#myclass">내 강의실</a>
+          <a href="/my-class">내 강의실</a>
           <a href="#resources">자료실</a>
-          <button className="loginButton">로그인</button>
+          <a className="loginButton" href="/login">로그인</a>
         </nav>
       </header>
 
@@ -38,7 +38,7 @@ export default function Home() {
         <h1>배우고, 만들고,<br />나만의 콘텐츠로 성장하세요.</h1>
         <p>AI가 어렵게 느껴져도 괜찮습니다. 하나씩 따라오며 나만의 콘텐츠와 수익화 기반을 만들어 보세요.</p>
         <div className="heroActions">
-          <a className="primaryButton" href="#myclass">내 강의실 가기</a>
+          <a className="primaryButton" href="/my-class">내 강의실 가기</a>
           <a className="secondaryButton" href="#courses">강의 둘러보기</a>
         </div>
       </section>

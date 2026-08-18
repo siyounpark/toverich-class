@@ -37,11 +37,12 @@ export default function AdminPage() {
 
   async function logout() {
     await supabase.auth.signOut()
-    router.replace('/')
-    router.refresh()
+    window.location.href = '/'
   }
 
-  const go = (path: string) => router.push(path)
+  function go(path: string) {
+    window.location.href = path
+  }
 
   return (
     <main className="dashboardPage">

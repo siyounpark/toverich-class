@@ -56,10 +56,10 @@ export default function AdminPage() {
         <p>{status}</p>
 
         <div className="adminGrid">
-          <article><strong>회원 관리</strong><span>회원 목록과 관리자/수강생 정보를 관리합니다.</span></article>
-          <article><strong>수강권한 관리</strong><span>결제 확인 후 과목별 수강권한을 부여합니다.</span></article>
-          <article><strong>강의 관리</strong><span>과목과 차시별 영상을 등록합니다.</span></article>
-          <article><strong>자료실 관리</strong><span>각 강의별 PDF, 챗봇, 링크, 파일을 등록합니다.</span></article>
+          <a className="adminCardLink" href="/admin/members"><strong>회원 관리</strong><span>회원 목록과 관리자/수강생 정보를 관리합니다.</span></a>
+          <a className="adminCardLink" href="/admin/enrollments"><strong>수강권한 관리</strong><span>결제 확인 후 과목별 수강권한을 부여합니다.</span></a>
+          <a className="adminCardLink" href="/admin/courses"><strong>강의 관리</strong><span>과목과 차시별 영상을 등록합니다.</span></a>
+          <a className="adminCardLink" href="/admin/resources"><strong>자료실 관리</strong><span>각 강의별 PDF, 챗봇, 링크, 파일을 등록합니다.</span></a>
         </div>
       </section>
     </main>

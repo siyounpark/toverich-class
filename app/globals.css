@@ -71,9 +71,10 @@ footer { padding: 10px 20px 50px; text-align: center; color: #918a99; font-size:
 .dashboardTopbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .secondaryAction { display: inline-flex; align-items: center; justify-content: center; border: 1px solid #ddd5e6; background: #fff; border-radius: 12px; padding: 10px 15px; cursor: pointer; font-weight: 800; }
 .adminGrid { margin-top: 30px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.adminGrid article, .adminCardLink { border: 1px solid #e7e1ed; border-radius: 16px; padding: 22px; background: #fbf9fd; display: grid; gap: 8px; }
-.adminCardLink { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-.adminCardLink:hover { transform: translateY(-2px); border-color: #cfc2e0; box-shadow: 0 10px 24px rgba(67, 49, 91, .08); }
+.adminGrid article, .adminCardLink, .adminCardButton { width: 100%; border: 1px solid #e7e1ed; border-radius: 16px; padding: 22px; background: #fbf9fd; display: grid; gap: 8px; text-align: left; color: inherit; }
+.adminCardLink, .adminCardButton { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; cursor: pointer; }
+.adminCardButton { appearance: none; }
+.adminCardLink:hover, .adminCardButton:hover { transform: translateY(-2px); border-color: #cfc2e0; box-shadow: 0 10px 24px rgba(67, 49, 91, .08); }
 .adminGrid strong { font-size: 19px; }
 .adminGrid span { color: #716b79; font-size: 14px; line-height: 1.6; }
 .adminPageHeader { margin-top: 22px; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; }

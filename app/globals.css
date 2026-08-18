@@ -9,7 +9,7 @@ button { font: inherit; }
 .brand { font-size: 21px; font-weight: 900; letter-spacing: -0.4px; }
 .brand span { color: #7551c9; }
 nav { display: flex; align-items: center; gap: 24px; font-size: 15px; font-weight: 700; }
-.loginButton { border: 0; border-radius: 999px; padding: 11px 19px; background: #292335; color: #fff; cursor: pointer; }
+.loginButton { display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 999px; padding: 11px 19px; background: #292335; color: #fff; cursor: pointer; }
 
 .hero { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 86px 30px; text-align: center; border-radius: 30px; background: linear-gradient(180deg, #f4effc 0%, #fbf9fe 58%, #fff 100%); border: 1px solid #eee8f5; }
 .heroBadge { display: inline-block; padding: 8px 14px; border-radius: 999px; background: #e9ddfb; color: #6841b7; font-size: 14px; font-weight: 800; }
@@ -50,9 +50,33 @@ nav { display: flex; align-items: center; gap: 24px; font-size: 15px; font-weigh
 .ctaBox p { margin: 0; max-width: 450px; font-size: 16px; line-height: 1.75; color: #d8d0e0; }
 footer { padding: 10px 20px 50px; text-align: center; color: #918a99; font-size: 13px; }
 
+.authPage, .dashboardPage { min-height: 100vh; background: #f7f4fb; padding: 48px 20px; }
+.authCard, .dashboardShell { width: min(680px, 100%); margin: 0 auto; background: #fff; border: 1px solid #e9e2f0; border-radius: 26px; box-shadow: 0 14px 40px rgba(49, 38, 64, .08); }
+.authCard { padding: 42px; }
+.authBrand { display: inline-block; font-size: 21px; font-weight: 900; }
+.authBrand span { color: #7650d8; }
+.authEyebrow { margin-top: 28px; color: #7650c9; font-size: 12px; font-weight: 900; letter-spacing: 1.2px; }
+.authCard h1, .dashboardShell h1 { margin: 8px 0 10px; font-size: 36px; line-height: 1.25; }
+.authIntro, .dashboardShell > p { color: #716b79; }
+.authForm { margin-top: 28px; display: grid; gap: 18px; }
+.authForm label { display: grid; gap: 8px; font-weight: 800; font-size: 14px; }
+.authForm input { width: 100%; min-height: 50px; border: 1px solid #ddd5e6; border-radius: 12px; padding: 0 14px; font-size: 16px; outline: none; }
+.authForm input:focus { border-color: #7650d8; box-shadow: 0 0 0 3px rgba(118, 80, 216, .12); }
+.authMessage { padding: 12px 14px; border-radius: 10px; background: #fff4f4; color: #a33; font-size: 14px; }
+.authSubmit { min-height: 52px; border: 0; border-radius: 13px; background: #7650d8; color: #fff; font-weight: 900; cursor: pointer; }
+.authSubmit:disabled { opacity: .65; cursor: wait; }
+.authBack { display: inline-block; margin-top: 24px; color: #6f6578; font-size: 14px; }
+.dashboardShell { width: min(980px, 100%); padding: 38px; }
+.dashboardTopbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.secondaryAction { border: 1px solid #ddd5e6; background: #fff; border-radius: 12px; padding: 10px 15px; cursor: pointer; font-weight: 800; }
+.adminGrid { margin-top: 30px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.adminGrid article { border: 1px solid #e7e1ed; border-radius: 16px; padding: 22px; background: #fbf9fd; display: grid; gap: 8px; }
+.adminGrid strong { font-size: 19px; }
+.adminGrid span { color: #716b79; font-size: 14px; line-height: 1.6; }
+
 @media (max-width: 800px) {
   .siteHeader { width: calc(100% - 32px); min-height: 66px; }
-  nav a { display: none; }
+  nav a:not(.loginButton) { display: none; }
   .hero { width: calc(100% - 24px); padding: 60px 22px; border-radius: 24px; }
   .hero h1 { font-size: 38px; letter-spacing: -1.5px; }
   .hero p { font-size: 16px; }
@@ -63,6 +87,8 @@ footer { padding: 10px 20px 50px; text-align: center; color: #918a99; font-size:
   .courseGrid { grid-template-columns: 1fr; }
   .resourceGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ctaBox { padding: 30px 24px; flex-direction: column; align-items: flex-start; }
+  .authCard, .dashboardShell { padding: 28px 22px; }
+  .adminGrid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
@@ -73,4 +99,5 @@ footer { padding: 10px 20px 50px; text-align: center; color: #918a99; font-size:
   .heroActions { flex-direction: column; }
   .primaryButton, .secondaryButton { width: 100%; }
   .resourceGrid { grid-template-columns: 1fr; }
+  .authCard h1, .dashboardShell h1 { font-size: 30px; }
 }

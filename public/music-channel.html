@@ -18,7 +18,7 @@
 <p id="error" role="alert" style="color:#aa233b"></p><button>채널 방향 고르기 →</button></form></section>
 <section id="s2" hidden><h1 tabindex="-1">어떤 채널이 마음에 드세요?</h1><p>선택한 음악 취향에 어울리는 장면을 골라주세요.</p><div id="choices"></div><label for="name">채널 이름 · 수정할 수 있어요</label><input id="name" maxlength="50"><p class="hint">이름과 핸들의 중복 여부는 유튜브에서 확인해야 합니다.</p><div class="row"><button class="alt" id="back1">← 취향 수정</button><button id="make">준비 결과 보기 →</button></div></section>
 <section id="s3" hidden><h1 tabindex="-1">나의 채널 준비 노트</h1><h2 id="heading"></h2><p id="summary"></p><p class="hint">항목을 펼쳐 수정하고 복사하세요. 실제 음악과 이미지는 생성하지 않습니다.</p><div id="results"></div><div class="row"><button class="alt" id="back2">← 방향 수정</button><button id="download">전체 결과 내려받기</button></div><p class="hint">다시 결과를 만들면 직접 수정한 결과가 교체됩니다. 먼저 내려받아 보관하세요.</p></section>
-<footer>입력 내용은 서버로 전송하지 않습니다. 새로고침 전에 결과를 내려받으세요.</footer></main><div id="status" role="status" aria-live="polite" hidden></div><script>
+<div class="notice" style="margin-top:24px"><strong>첫 곡 다음에도 같은 스타일로 이어가세요.</strong><p>전체 결과를 내려받은 뒤, 다음 작업실에서 텍스트 파일을 올려주세요.</p><a href="playlist-continue.html" style="color:#61339d;font-weight:700">이 스타일로 플레이리스트 이어 만들기 →</a></div><footer>입력 내용은 서버로 전송하지 않습니다. 새로고침 전에 결과를 내려받으세요.</footer></main><div id="status" role="status" aria-live="polite" hidden></div><script>
 "use strict";
 const $=id=>document.getElementById(id);
 const concepts=[

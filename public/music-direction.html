@@ -1,0 +1,68 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>내 음악채널 방향 찾기</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f7f4fb;color:#30243d;font:18px/1.7 system-ui,sans-serif}header{background:#fff;border-bottom:1px solid #ded4eb;padding:22px}main,header>div{max-width:900px;margin:auto}main{padding:24px 20px 70px}h1{font-size:32px;line-height:1.4}h2{font-size:24px}small,.hint{font-size:16px;color:#655870}.brand{color:#61339d;font-size:24px;font-weight:800}.notice{padding:16px;background:#ede5f7;border-radius:12px}.steps{display:flex;gap:8px;margin:24px 0}.steps span{flex:1;text-align:center;padding:10px;background:#e7e0ed;border-radius:10px}.steps .active{background:#61339d;color:white}section{background:white;border:1px solid #ded4eb;border-radius:20px;padding:26px}label{display:block;font-weight:700;margin:18px 0 6px}input,select,textarea{width:100%;font:inherit;padding:12px;border:1px solid #ad9abc;border-radius:10px;background:white;color:inherit}textarea{min-height:100px;resize:vertical}button{font:inherit;font-weight:700;background:#61339d;color:white;border:1px solid #61339d;border-radius:10px;padding:12px 20px;min-height:50px;cursor:pointer}button.alt{background:white;color:#61339d}.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}.choice{border:2px solid #ddd1e8;padding:16px;border-radius:12px;cursor:pointer}.choice:has(input:checked){border-color:#61339d;background:#f7f0ff}.choice input{width:22px;height:22px;accent-color:#61339d}.choice strong{display:block;font-size:22px}.choice small{display:block}details{padding:18px;border:1px solid #ded4eb;border-radius:12px;margin:16px 0}summary{font-weight:700;font-size:21px;cursor:pointer}.out button{margin:8px 0 18px}.out textarea{font-size:17px}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #ce9415;outline-offset:3px}[hidden]{display:none!important}#status{position:fixed;bottom:18px;left:5%;width:90%;background:#30243d;color:white;padding:12px;border-radius:12px;text-align:center}footer{margin-top:24px;font-size:16px;color:#655870}@media(max-width:600px){.grid{grid-template-columns:1fr}section{padding:18px}h1{font-size:27px}.steps span{font-size:16px;padding:10px 3px}}
+
+a{color:#61339d}article{padding:22px;margin:20px 0;border:1px solid #ded4eb;border-radius:16px;background:white}article h2{margin-top:0}.video img{width:240px;max-width:100%;border-radius:12px}.badge{background:#ece4f6;padding:5px 10px;border-radius:8px}#cards{margin-top:24px}.error{color:#a22339}button:disabled{opacity:.5}a.button{display:inline-block;border:1px solid #61339d;border-radius:10px;padding:12px;margin:8px 8px 8px 0;text-decoration:none;font-weight:700}
+</style></head><body><header><div><div class="brand">♫ 내 음악채널 방향 찾기</div><small>누구의 어떤 시간에 함께하고 싶으세요?</small></div></header><main>
+<div class="notice">채널 방향은 선택한 조건을 바탕으로 한 기획 제안입니다. 최근 영상 검색 결과와 구분해서 보여드립니다.</div>
+<section><h1>어떤 순간을 위한 음악인가요?</h1><form id="form">
+<label for="situation">음악을 듣는 상황</label><select id="situation"><option value="office">사무실에서 일할 때</option><option value="drive">고속도로 운전할 때</option><option value="kids">아이들과 놀 때</option><option value="hobby">컬러링·취미생활을 할 때</option><option value="cafe">카페에서 하루 종일 틀 때</option><option value="sleep">잠들기 전</option><option value="custom">직접 입력</option></select>
+<div id="customBox" hidden><label for="custom">어떤 상황인가요?</label><input id="custom" maxlength="80" placeholder="예: 집안일을 하면서"></div>
+<div class="grid"><div><label for="mood">원하는 느낌</label><select id="mood"><option value="warm">따뜻하고 편안하게</option><option value="quiet">차분하고 고요하게</option><option value="bright">경쾌하고 산뜻하게</option></select></div>
+<div><label for="voice">노랫소리</label><select id="voice"><option value="none">악기 연주만</option><option value="female">보컬 포함</option><option value="any">상관없음</option></select></div>
+<div><label for="audience">주로 들려줄 사람</label><select id="audience"><option>성인</option><option>중장년</option><option>어린이·가족</option></select></div></div>
+<p id="error" role="alert" class="error"></p><div class="row"><button>채널 방향 3가지 살펴보기 →</button></div>
+</form></section>
+<div id="results" hidden><h1 id="resultHeading" tabindex="-1">나에게 맞는 채널 방향</h1><p id="selection"></p><p class="hint">장르를 추천하는 기획 예시입니다. 인기 순위나 실제 음원 분석 결과가 아닙니다.</p><div id="cards"></div>
+<section><h2>최근 참고 영상 찾아보기</h2><p id="connection" role="status">검색 연결 상태를 확인하고 있어요.</p><label for="query">검색어 · 수정 가능</label><input id="query" maxlength="200">
+<label for="days">게시 기간</label><select id="days"><option value="30">최근 30일</option><option value="90">최근 90일</option></select>
+<div id="accessBox" hidden><label for="access">검색 이용 코드</label><input id="access" type="password" autocomplete="off"><p class="hint">운영자가 제공한 이용 코드를 입력하세요. API 키를 입력하는 칸이 아닙니다.</p></div>
+<div class="row"><button id="search" disabled>실제 참고 영상 검색</button><a class="button" id="youtube" target="_blank" rel="noopener noreferrer">유튜브에서 직접 검색 ↗</a></div>
+<p class="hint">앱 검색은 최근 게시된 20분 초과 영상 중 조회수 순으로 최대 9개를 확인합니다. 검색 범위 전체의 인기 순위가 아니며 실제 음악 장르를 분석하지 않습니다. 직접 검색 링크에는 앱의 기간 조건이 적용되지 않습니다.</p>
+<p id="searchStatus" role="status"></p><div id="videos"></div></section></div>
+<footer><a href="music-channel.html">음악채널 작업실로 바로 가기 →</a><p>입력한 기획은 자동 저장되지 않습니다. 실제 검색을 누르면 검색어가 서버와 YouTube로 전송됩니다.</p></footer></main>
+<script>
+const $=id=>document.getElementById(id);
+const profiles={
+office:{label:"사무실 작업",use:"조용히 집중할 때",genres:["lofi","newage","jazz"],angle:"메일 정리·문서 작업처럼 구체적인 업무 시간을 정해보세요."},
+drive:{label:"드라이브",use:"고속도로 운전할 때",genres:["pop","jazz","newage"],angle:"해안도로·출근길처럼 장면을 좁혀보세요. 졸음 방지 효과를 약속하지 마세요."},
+kids:{label:"아이들과 놀이",use:"아이들과 놀 때",genres:["pop","newage","classical"],angle:"블록 놀이·그림 그리기처럼 활동을 정하고 실제 아동 대상 여부를 확인하세요."},
+hobby:{label:"컬러링과 취미",use:"색칠하거나 책을 읽을 때",genres:["newage","jazz","lofi"],angle:"컬러링·뜨개질·다꾸 등 한 가지 취미를 중심으로 시작해보세요."},
+cafe:{label:"카페",use:"카페에서 하루 종일 틀 때",genres:["jazz","lofi","pop"],angle:"오픈 준비·오후 대화·마감 시간처럼 카페의 시간대를 나눠보세요."},
+sleep:{label:"잠들기 전",use:"잠들기 전이나 수면 중",genres:["newage","classical","lofi"],angle:"잔잔한 음량과 부드러운 연결을 확인하고 수면 치료 효과는 약속하지 마세요."},
+custom:{label:"나만의 일상",use:"",genres:["newage","jazz","pop"],angle:"듣는 사람의 행동과 원하는 분위기를 함께 설명해보세요."}
+};
+const genres={newage:{name:"뉴에이지",style:"piano",reason:"단순한 선율을 중심으로 편안한 배경을 구상하기 좋습니다."},jazz:{name:"재즈",style:"jazz",reason:"부드러운 리듬과 따뜻한 분위기를 구상할 수 있습니다."},lofi:{name:"로파이",style:"ambient",reason:"반복되는 잔잔한 흐름을 중심으로 구성해볼 수 있습니다."},classical:{name:"클래식",style:"piano",reason:"어쿠스틱 악기와 차분한 연주 중심으로 기획할 수 있습니다."},pop:{name:"팝",style:"guitar",reason:"선명한 멜로디를 중심으로 친숙한 분위기를 구상할 수 있습니다."}};
+let current=null,configured=false,loading=false;
+function queryLink(){$("youtube").href="https://www.youtube.com/results?search_query="+encodeURIComponent($("query").value)}
+$("query").oninput=queryLink;
+$("situation").onchange=()=>{const custom=$("situation").value==="custom";$("customBox").hidden=!custom;$("custom").required=custom;if(custom)$("custom").focus()};
+async function check(){try{const r=await fetch("/api/music-research");if(!r.ok)throw Error();const d=await r.json();configured=d.configured===true;$("connection").textContent=configured?"실제 유튜브 검색 연결 준비됨 · 이용 코드가 필요합니다.":"실제 검색 연결 전입니다. 현재는 아래 링크로 유튜브에서 직접 확인할 수 있어요."}catch{$("connection").textContent="검색 서버에 연결하지 못했어요. 직접 검색 링크를 이용해 주세요."} $("search").disabled=!configured;$("accessBox").hidden=!configured}check();
+$("form").onsubmit=e=>{e.preventDefault();if(loading)return;$("error").textContent="";const key=$("situation").value,p={...profiles[key]},mood=$("mood").value,voice=$("voice").value,audience=$("audience").value;
+if(key==="custom"){p.label=$("custom").value.trim();p.use=p.label;if(!p.label){$("error").textContent="음악을 들을 상황을 입력해 주세요.";return}}
+current={p,mood,voice,audience};$("results").hidden=false;$("cards").replaceChildren();$("videos").replaceChildren();$("searchStatus").textContent="";
+$("selection").textContent=p.label+" · "+audience+" · "+$("mood").selectedOptions[0].text+" · "+$("voice").selectedOptions[0].text;
+p.genres.forEach((g,i)=>{const def=genres[g],card=document.createElement("article"),badge=document.createElement("span"),h=document.createElement("h2"),why=document.createElement("p"),angle=document.createElement("p");
+badge.className="badge";badge.textContent="방향 "+(i+1);h.textContent=p.label+"을 위한 "+def.name;why.textContent=def.reason+" 대상: "+audience+". 원하는 느낌: "+$("mood").selectedOptions[0].text+".";angle.textContent="차별화 아이디어: "+p.angle;
+const q=p.label+" "+def.name+" "+(voice==="none"?"가사 없는 ":"")+"플레이리스트";
+const browse=document.createElement("button");browse.className="alt";browse.textContent="이 방향의 참고 영상 찾기";browse.onclick=()=>{$("query").value=q;queryLink();$("query").focus();$("connection").scrollIntoView({behavior:"smooth"})};
+const go=document.createElement("a");go.className="button";go.textContent="이 방향으로 내 채널 준비하기 →";
+go.href="music-channel.html#plan="+encodeURIComponent(JSON.stringify({use:p.use,musicGenre:g,genre:key==="sleep"&&g==="newage"?"ambient":def.style,mood,voice:voice==="any"?"none":voice,audience,name:p.label+" 음악쉼",fromDirection:true,voiceUndecided:voice==="any"}));
+const hint=document.createElement("p");hint.className="hint";hint.textContent="선택한 상황·장르·분위기를 작업실로 가져갑니다."+(voice==="any"?" 목소리는 작업실에서 다시 선택하세요.":"");
+card.append(badge,h,why,angle,browse,go,hint);$("cards").append(card);
+});
+$("query").value=p.label+" "+(voice==="none"?"가사 없는 ":"")+"음악 플레이리스트";queryLink();$("resultHeading").focus();
+};
+$("search").onclick=async()=>{
+if(loading||!configured)return;const q=$("query").value.trim();if(!q){$("searchStatus").textContent="검색어를 입력해 주세요.";return}
+loading=true;$("search").disabled=true;$("videos").replaceChildren();$("searchStatus").textContent="실제 영상과 공개 조회수를 확인하고 있어요.";
+try{const r=await fetch("/api/music-research",{method:"POST",headers:{"Content-Type":"application/json","x-research-code":$("access").value},body:JSON.stringify({q,days:Number($("days").value)})});const d=await r.json();if(!r.ok)throw Error(d.error||"검색을 완료하지 못했어요.");
+$("searchStatus").textContent=d.items.length?"확인 시점: "+new Date(d.checkedAt).toLocaleString("ko-KR")+" · "+d.items.length+"개 영상":"조건에 맞는 영상이 없습니다. 기간이나 검색어를 바꿔보세요.";
+for(const v of d.items){if(!/^[A-Za-z0-9_-]{11}$/.test(v.id))continue;const a=document.createElement("article");a.className="video";const h=document.createElement("h2"),link=document.createElement("a");link.href="https://www.youtube.com/watch?v="+v.id;link.target="_blank";link.rel="noopener noreferrer";link.textContent=v.title;h.append(link);
+if(typeof v.thumbnail==="string"&&v.thumbnail.startsWith("https://i.ytimg.com/")){const img=document.createElement("img");img.src=v.thumbnail;img.alt="";img.loading="lazy";a.append(img)}
+const ch=document.createElement("a");ch.textContent=v.channel;if(/^UC[A-Za-z0-9_-]+$/.test(v.channelId)){ch.href="https://www.youtube.com/channel/"+v.channelId;ch.target="_blank";ch.rel="noopener noreferrer"}
+const p=document.createElement("p");p.textContent="게시일 "+new Date(v.publishedAt).toLocaleDateString("ko-KR")+" · 조회수 "+(v.views===null?"미공개":v.views.toLocaleString("ko-KR"))+" · 하루 평균 "+(v.averagePerDay===null?"미공개":v.averagePerDay.toLocaleString("ko-KR"));
+const note=document.createElement("p");note.className="hint";note.textContent="하루 평균은 누적 조회수 ÷ 게시 후 경과 일수(최소 1일)입니다. 최근 증가 속도나 수익을 뜻하지 않습니다. 음악은 직접 들어보세요.";
+a.append(h,ch,p,note);$("videos").append(a)}
+}catch(e){$("searchStatus").textContent=e.message||"검색 오류가 발생했습니다."}finally{loading=false;$("search").disabled=!configured}
+};
+</script></body></html>

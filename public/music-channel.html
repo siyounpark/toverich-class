@@ -1,0 +1,64 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>나의 음악채널 작업실</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f7f4fb;color:#30243d;font:18px/1.7 system-ui,sans-serif}header{background:#fff;border-bottom:1px solid #ded4eb;padding:22px}main,header>div{max-width:900px;margin:auto}main{padding:24px 20px 70px}h1{font-size:32px;line-height:1.4}h2{font-size:24px}small,.hint{font-size:16px;color:#655870}.brand{color:#61339d;font-size:24px;font-weight:800}.notice{padding:16px;background:#ede5f7;border-radius:12px}.steps{display:flex;gap:8px;margin:24px 0}.steps span{flex:1;text-align:center;padding:10px;background:#e7e0ed;border-radius:10px}.steps .active{background:#61339d;color:white}section{background:white;border:1px solid #ded4eb;border-radius:20px;padding:26px}label{display:block;font-weight:700;margin:18px 0 6px}input,select,textarea{width:100%;font:inherit;padding:12px;border:1px solid #ad9abc;border-radius:10px;background:white;color:inherit}textarea{min-height:100px;resize:vertical}button{font:inherit;font-weight:700;background:#61339d;color:white;border:1px solid #61339d;border-radius:10px;padding:12px 20px;min-height:50px;cursor:pointer}button.alt{background:white;color:#61339d}.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}.choice{border:2px solid #ddd1e8;padding:16px;border-radius:12px;cursor:pointer}.choice:has(input:checked){border-color:#61339d;background:#f7f0ff}.choice input{width:22px;height:22px;accent-color:#61339d}.choice strong{display:block;font-size:22px}.choice small{display:block}details{padding:18px;border:1px solid #ded4eb;border-radius:12px;margin:16px 0}summary{font-weight:700;font-size:21px;cursor:pointer}.out button{margin:8px 0 18px}.out textarea{font-size:17px}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #ce9415;outline-offset:3px}[hidden]{display:none!important}#status{position:fixed;bottom:18px;left:5%;width:90%;background:#30243d;color:white;padding:12px;border-radius:12px;text-align:center}footer{margin-top:24px;font-size:16px;color:#655870}@media(max-width:600px){.grid{grid-template-columns:1fr}section{padding:18px}h1{font-size:27px}.steps span{font-size:16px;padding:10px 3px}}
+</style><header><div><div class="brand">♫ 나의 음악채널 작업실</div><small>토브리치와 함께 준비하는 첫 음악 채널</small></div></header><main>
+<div class="notice"><strong>취향으로 만들어보는 체험 버전</strong><br>입력한 취향을 문장 틀에 반영합니다. 유튜브 링크나 실제 음악을 분석하지 않습니다.</div>
+<nav class="steps" aria-label="진행 단계"><span class="active" aria-current="step">1. 취향 입력</span><span>2. 방향 선택</span><span>3. 결과 확인</span></nav>
+<section id="s1"><h1 tabindex="-1">어떤 음악을 만들고 싶으세요?</h1><p>마음에 드는 항목을 골라보세요. 링크 없이도 시작할 수 있어요.</p><form id="form">
+<label for="url">참고 유튜브 링크 · 선택</label><input id="url" type="url" placeholder="https://www.youtube.com/…"><p class="hint">링크는 참고 메모로만 남습니다.</p>
+<div class="grid">
+<div><label for="use">언제 듣는 음악인가요?</label><select id="use"><option>색칠하거나 책을 읽을 때</option><option>아침에 차를 마실 때</option><option>저녁에 편안히 쉴 때</option><option>조용히 집중할 때</option></select></div>
+<div><label for="mood">분위기</label><select id="mood"><option value="warm">따뜻하고 편안하게</option><option value="bright">밝고 산뜻하게</option><option value="quiet">차분하고 고요하게</option></select></div>
+<div><label for="genre">음악 스타일</label><select id="genre"><option value="piano">잔잔한 피아노</option><option value="jazz">부드러운 재즈</option><option value="guitar">어쿠스틱 기타</option><option value="ambient">잔잔한 앰비언트</option></select></div>
+<div><label for="voice">목소리</label><select id="voice"><option value="none">악기 연주만</option><option value="female">여성 보컬</option><option value="male">남성 보컬</option></select></div>
+<div><label for="art">이미지 스타일</label><select id="art"><option>따뜻한 사진풍</option><option>부드러운 수채화</option><option>단순한 손그림</option></select></div>
+<div><label for="color">색감</label><select id="color"><option>크림색과 보라색</option><option>흰색과 초록색</option><option>남색과 은은한 금색</option></select></div></div>
+<label for="note">더 담고 싶은 취향 · 선택</label><textarea id="note" maxlength="500" placeholder="예: 창가와 꽃을 좋아해요. 사람이 없는 그림이 좋아요."></textarea><p class="hint">추가 취향은 요청문에 그대로 붙습니다.</p>
+<p id="error" role="alert" style="color:#aa233b"></p><button>채널 방향 고르기 →</button></form></section>
+<section id="s2" hidden><h1 tabindex="-1">어떤 채널이 마음에 드세요?</h1><p>선택한 음악 취향에 어울리는 장면을 골라주세요.</p><div id="choices"></div><label for="name">채널 이름 · 수정할 수 있어요</label><input id="name" maxlength="50"><p class="hint">이름과 핸들의 중복 여부는 유튜브에서 확인해야 합니다.</p><div class="row"><button class="alt" id="back1">← 취향 수정</button><button id="make">준비 결과 보기 →</button></div></section>
+<section id="s3" hidden><h1 tabindex="-1">나의 채널 준비 노트</h1><h2 id="heading"></h2><p id="summary"></p><p class="hint">항목을 펼쳐 수정하고 복사하세요. 실제 음악과 이미지는 생성하지 않습니다.</p><div id="results"></div><div class="row"><button class="alt" id="back2">← 방향 수정</button><button id="download">전체 결과 내려받기</button></div><p class="hint">다시 결과를 만들면 직접 수정한 결과가 교체됩니다. 먼저 내려받아 보관하세요.</p></section>
+<footer>입력 내용은 서버로 전송하지 않습니다. 새로고침 전에 결과를 내려받으세요.</footer></main><div id="status" role="status" aria-live="polite" hidden></div><script>
+"use strict";
+const $=id=>document.getElementById(id);
+const concepts=[
+["오후의 그림쉼","afternoon-art-rest","햇살이 비치는 창가, 책과 색연필, 차 한 잔","찻잔과 펼친 책"],
+["초록빛 음악정원","green-music-garden","나무 그늘과 정원이 보이는 조용한 테라스","잎사귀와 작은 음표"],
+["하루 끝 작은 쉼","day-end-music","은은한 조명의 창가와 편안한 의자","작은 달과 음표"]];
+const genres={piano:["잔잔한 피아노","gentle solo piano"],jazz:["부드러운 재즈","soft jazz, mellow piano, warm upright bass, delicate brushed drums"],guitar:["어쿠스틱 기타","warm acoustic guitar, delicate fingerpicking"],ambient:["잔잔한 앰비언트","soft ambient, warm pads, subtle textures, no percussion"]};
+const moods={warm:["따뜻하고 편안한","warm and comforting, slow relaxed pace"],bright:["밝고 산뜻한","bright and fresh, gentle moderate pace"],quiet:["차분하고 고요한","calm and serene, very slow pace"]};
+let state={},chosen=0,fields=[],timer;
+function toast(t){$("status").textContent=t;$("status").hidden=false;clearTimeout(timer);timer=setTimeout(()=>$("status").hidden=true,4500)}
+function step(n){for(let i=1;i<=3;i++)$("s"+i).hidden=i!==n;document.querySelectorAll(".steps span").forEach((el,i)=>{el.classList.toggle("active",i===n-1);if(i===n-1)el.setAttribute("aria-current","step");else el.removeAttribute("aria-current")});$("s"+n).querySelector("h1").focus();window.scrollTo(0,0)}
+$("form").onsubmit=e=>{e.preventDefault();$("error").textContent="";const link=$("url").value.trim();if(link){try{const u=new URL(link);if(!["http:","https:"].includes(u.protocol)||!(u.hostname==="youtu.be"||u.hostname==="youtube.com"||u.hostname.endsWith(".youtube.com")))throw Error()}catch{$("error").textContent="유튜브 링크를 확인하거나 비우고 진행해 주세요.";$("url").focus();return}}
+["url","use","mood","genre","voice","art","color","note"].forEach(id=>state[id]=$(id).value.trim());
+$("choices").replaceChildren();concepts.forEach((c,i)=>{const l=document.createElement("label");l.className="choice";const r=document.createElement("input");r.type="radio";r.name="concept";r.checked=i===chosen;r.onchange=()=>{chosen=i;$("name").value=c[0]};const b=document.createElement("strong");b.textContent=c[0];const d=document.createElement("small");d.textContent=c[2];l.append(r,b,d);$("choices").append(l)});if(!$("name").value)$("name").value=concepts[chosen][0];step(2)};
+$("back1").onclick=()=>step(1);$("back2").onclick=()=>step(2);
+function group(title,open){const d=document.createElement("details");d.open=!!open;const s=document.createElement("summary");s.textContent=title;d.append(s);$("results").append(d);return d}
+function item(parent,title,text,help=""){const box=document.createElement("div");box.className="out";const id="out"+fields.length;const l=document.createElement("label");l.htmlFor=id;l.textContent=title;const a=document.createElement("textarea");a.id=id;a.value=text;a.rows=4;const p=document.createElement("p");p.className="hint";p.textContent=help;const b=document.createElement("button");b.className="alt";b.textContent=title+" 복사";b.onclick=async()=>{try{if(!navigator.clipboard)throw Error();await navigator.clipboard.writeText(a.value);toast("복사했어요. 사용할 도구에 붙여넣으세요.")}catch{a.focus();a.select();toast("글을 선택했어요. 복사 메뉴 또는 Ctrl+C로 복사해 주세요.")}};box.append(l,a,p,b);parent.append(box);fields.push({title,area:a})}
+$("make").onclick=()=>{const name=$("name").value.trim();if(!name){toast("채널 이름을 입력하세요.");$("name").focus();return}
+const c=concepts[chosen],g=genres[state.genre],m=moods[state.mood],extra=state.note?"\n추가 요청: "+state.note:"";
+const visual=state.art+", "+state.color+", "+m[0]+" 분위기. 기존 채널 이미지나 로고를 복제하지 않기.";
+const vocal=state.voice==="none"?"instrumental only, no vocals, no humming":state.voice==="female"?"soft female lead vocal":"soft male lead vocal";
+fields=[];$("results").replaceChildren();$("heading").textContent=name;$("summary").textContent=state.use+" 듣는 "+m[0]+" "+g[0];
+let d=group("① 채널 기본 정보",true);
+item(d,"채널 이름",name);item(d,"핸들 후보","@"+c[1]+"\n@"+c[1]+"-studio","사용 가능 여부를 확인하지 않은 후보입니다.");
+item(d,"채널 소개",name+"에 오신 것을 환영합니다.\n"+state.use+" 함께할 "+m[0]+" "+g[0]+"을 준비합니다.\n일상 속 편안한 음악 시간을 나누겠습니다.");
+item(d,"채널 키워드",[g[0],m[0]+" 음악",state.use,"음악 플레이리스트"].join(", "));
+item(d,"참고 메모","참고 링크: "+(state.url||"없음")+"\n링크·음악 분석: 미실시\n추가 취향: "+(state.note||"없음"));
+d=group("② 프로필과 채널 배너");
+item(d,"프로필 이미지 프롬프트","유튜브 프로필 이미지를 만들어줘.\n"+visual+"\n상징: "+c[3]+". 정사각형 1:1. 원형으로 잘라도 보이도록 중앙 배치. 작게 보아도 명확한 단순한 형태. 글자 없음."+extra,"이미지 제작 도구에 붙여넣으세요.");
+item(d,"배너 이미지 프롬프트","유튜브 채널 배너 배경을 만들어줘.\n"+visual+"\n장면: "+c[2]+". 가로 16:9. 주요 요소는 중앙에 모으고 채널명을 넣을 여백 확보. 가장자리는 단순하게. 글자 없음."+extra,"제작 후 채널명을 넣고 기기별 잘림 미리보기를 확인하세요.");
+d=group("③ 첫 음악 만들기");
+item(d,"곡 제목 후보",c[0]+"의 첫 멜로디\n"+m[0]+" 순간\n잠시 머무는 시간");
+item(d,"Suno 프롬프트",g[1]+", "+m[1]+", "+vocal+", balanced gentle dynamics, smooth transitions, natural ending, original composition, no imitation of a specific artist."+extra,"Suno 스타일 입력란에 붙여넣으세요. 실제 음악 생성 결과는 달라질 수 있어요.");
+if(state.voice!=="none")item(d,"가사 작성 요청문","새로운 한국어 노래 가사를 써줘. 주제는 일상 속 휴식, 분위기는 "+m[0]+". 1절·후렴·2절·후렴 구조로 짧게. 기존 노래 가사를 인용하지 마."+extra,"ChatGPT에서 가사를 작성하고 검토한 뒤 Suno에 입력하세요.");
+d=group("④ 영상 배경과 썸네일");
+item(d,"영상 배경 프롬프트","음악 영상 배경 이미지를 만들어줘.\n"+visual+"\n장면: "+c[2]+". 가로 16:9. 사람 없이 오래 보아도 편안한 구도. 글자와 로고 없음."+extra);
+item(d,"썸네일 이미지 프롬프트","음악 영상 썸네일 배경을 만들어줘.\n"+visual+"\n장면: "+c[2]+". 가로 16:9. 피사체를 오른쪽에 놓고 왼쪽은 큰 제목을 넣도록 단순하게 비워줘. 글자 없음."+extra);
+item(d,"썸네일 문구",c[0]+"\n"+g[0],"미리캔버스나 Canva에서 글자를 크게 넣으세요.");
+d=group("⑤ 업로드 준비");
+item(d,"영상 제목",c[0]+" | "+g[0]+" 플레이리스트");
+item(d,"영상 설명",state.use+" 듣기 좋은 "+m[0]+" 음악입니다.\n\n[실제 제작 과정에 맞게 수정]\nAI로 만든 음악을 직접 선곡하고 편집했습니다.\n\n곡 목록\n00:00 첫 곡\n[이후 곡의 실제 시작 시간과 제목 입력]");
+item(d,"완료 체크","□ 핸들 중복 확인\n□ 거주 국가와 콘텐츠 언어 구분\n□ 배너·프로필 잘림 확인\n□ 음악·이미지 이용 조건 확인\n□ 실제 대상에 맞게 아동용 여부 판단\n□ AI 사용 공개 항목 확인\n□ 업로드 후 소리와 화면 확인","요금과 정책은 현재 공식 안내를 확인하세요.");
+step(3)};
+$("download").onclick=()=>{const text="음악채널 준비 노트\n체험 버전 · 링크/음악 분석 미실시\n\n"+fields.map(f=>"【"+f.title+"】\n"+f.area.value).join("\n\n");const u=URL.createObjectURL(new Blob(["\ufeff"+text],{type:"text/plain;charset=utf-8"}));const a=document.createElement("a");a.href=u;a.download="음악채널_준비노트.txt";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),10000);toast("다운로드 폴더를 확인해 주세요.")};
+</script></html>

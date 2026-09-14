@@ -1,7 +1,7 @@
 <!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>나의 음악채널 작업실</title><style>
 *{box-sizing:border-box}body{margin:0;background:#f7f4fb;color:#30243d;font:18px/1.7 system-ui,sans-serif}header{background:#fff;border-bottom:1px solid #ded4eb;padding:22px}main,header>div{max-width:900px;margin:auto}main{padding:24px 20px 70px}h1{font-size:32px;line-height:1.4}h2{font-size:24px}small,.hint{font-size:16px;color:#655870}.brand{color:#61339d;font-size:24px;font-weight:800}.notice{padding:16px;background:#ede5f7;border-radius:12px}.steps{display:flex;gap:8px;margin:24px 0}.steps span{flex:1;text-align:center;padding:10px;background:#e7e0ed;border-radius:10px}.steps .active{background:#61339d;color:white}section{background:white;border:1px solid #ded4eb;border-radius:20px;padding:26px}label{display:block;font-weight:700;margin:18px 0 6px}input,select,textarea{width:100%;font:inherit;padding:12px;border:1px solid #ad9abc;border-radius:10px;background:white;color:inherit}textarea{min-height:100px;resize:vertical}button{font:inherit;font-weight:700;background:#61339d;color:white;border:1px solid #61339d;border-radius:10px;padding:12px 20px;min-height:50px;cursor:pointer}button.alt{background:white;color:#61339d}.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}.choice{border:2px solid #ddd1e8;padding:16px;border-radius:12px;cursor:pointer}.choice:has(input:checked){border-color:#61339d;background:#f7f0ff}.choice input{width:22px;height:22px;accent-color:#61339d}.choice strong{display:block;font-size:22px}.choice small{display:block}details{padding:18px;border:1px solid #ded4eb;border-radius:12px;margin:16px 0}summary{font-weight:700;font-size:21px;cursor:pointer}.out button{margin:8px 0 18px}.out textarea{font-size:17px}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #ce9415;outline-offset:3px}[hidden]{display:none!important}#status{position:fixed;bottom:18px;left:5%;width:90%;background:#30243d;color:white;padding:12px;border-radius:12px;text-align:center}footer{margin-top:24px;font-size:16px;color:#655870}@media(max-width:600px){.grid{grid-template-columns:1fr}section{padding:18px}h1{font-size:27px}.steps span{font-size:16px;padding:10px 3px}}
 </style><header><div><div class="brand">♫ 나의 음악채널 작업실</div><small>토브리치와 함께 준비하는 첫 음악 채널</small></div></header><main>
-<div class="notice"><strong>취향으로 만들어보는 체험 버전</strong><br>입력한 취향을 문장 틀에 반영합니다. 유튜브 링크나 실제 음악을 분석하지 않습니다.</div>
+<p><a href="music-direction.html" style="color:#61339d;font-weight:700">← 어떤 채널을 만들지 고민이라면, 방향 찾기</a></p><div id="handoff" class="notice" hidden></div><div class="notice"><strong>취향으로 만들어보는 체험 버전</strong><br>입력한 취향을 문장 틀에 반영합니다. 유튜브 링크나 실제 음악을 분석하지 않습니다.</div>
 <nav class="steps" aria-label="진행 단계"><span class="active" aria-current="step">1. 취향 입력</span><span>2. 방향 선택</span><span>3. 결과 확인</span></nav>
 <section id="s1"><h1 tabindex="-1">어떤 음악을 만들고 싶으세요?</h1><p>마음에 드는 항목을 골라보세요. 링크 없이도 시작할 수 있어요.</p><form id="form">
 <label for="url">참고 유튜브 링크 · 선택</label><input id="url" type="url" placeholder="https://www.youtube.com/…"><p class="hint">링크는 참고 메모로만 남습니다.</p>
@@ -75,6 +75,7 @@ fields=[];$("results").replaceChildren();$("heading").textContent=name;$("summar
 let keywords=group("채널 검색 키워드 · 복사해서 사용하세요",true);
 item(keywords,"채널 키워드",searchKeywords(state,selectedGenre),"유튜브 스튜디오 → 설정 → 채널 → 기본 정보 → 키워드에 입력하세요. 실제 채널 내용에 맞게 수정하세요. 검색량·인기 순위를 조회한 결과가 아닌 검색어 후보입니다.");
 let d=group("① 채널 기본 정보",true);
+if($("targetAudience"))item(d,"대상 시청자",$("targetAudience").value);
 item(d,"음악 장르",selectedGenre[0]+" ("+selectedGenre[1]+")");
 item(d,"채널 이름",name);item(d,"핸들 후보","@"+c[1]+"\n@"+c[1]+"-studio","사용 가능 여부를 확인하지 않은 후보입니다.");
 item(d,"채널 소개",name+"에 오신 것을 환영합니다.\n"+state.use+" 함께할 "+m[0]+" "+selectedGenre[0]+" · "+g[0]+" 음악을 준비합니다.\n일상 속 편안한 음악 시간을 나누겠습니다.");
@@ -97,4 +98,25 @@ item(d,"영상 설명",state.use+" 듣기 좋은 "+m[0]+" 음악입니다.\n\n[�
 item(d,"완료 체크","□ 핸들 중복 확인\n□ 거주 국가와 콘텐츠 언어 구분\n□ 배너·프로필 잘림 확인\n□ 음악·이미지 이용 조건 확인\n□ 실제 대상에 맞게 아동용 여부 판단\n□ AI 사용 공개 항목 확인\n□ 업로드 후 소리와 화면 확인","요금과 정책은 현재 공식 안내를 확인하세요.");
 step(3)};
 $("download").onclick=()=>{const text="음악채널 준비 노트\n체험 버전 · 링크/음악 분석 미실시\n\n"+fields.map(f=>"【"+f.title+"】\n"+f.area.value).join("\n\n");const u=URL.createObjectURL(new Blob(["\ufeff"+text],{type:"text/plain;charset=utf-8"}));const a=document.createElement("a");a.href=u;a.download="음악채널_준비노트.txt";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),10000);toast("다운로드 폴더를 확인해 주세요.")};
+
+try{
+if(location.hash.startsWith("#plan=")){
+const plan=JSON.parse(decodeURIComponent(location.hash.slice(6)));
+if(plan&&plan.fromDirection===true){
+for(const id of ["musicGenre","genre","mood","voice"]){
+const v=plan[id];if(typeof v==="string"&&Array.from($(id).options).some(o=>o.value===v))$(id).value=v;
+}
+if(typeof plan.use==="string"&&plan.use.length<=100){
+if(!Array.from($("use").options).some(o=>o.value===plan.use)){const o=document.createElement("option");o.value=plan.use;o.textContent=plan.use;$("use").append(o)}$("use").value=plan.use;
+}
+if(typeof plan.name==="string")$("name").value=plan.name.slice(0,50);
+if(typeof plan.audience==="string"&&plan.audience.length<=40){
+const hidden=document.createElement("input");hidden.id="targetAudience";hidden.type="hidden";hidden.value=plan.audience;document.body.append(hidden);
+}
+$("handoff").hidden=false;$("handoff").textContent="방향 찾기에서 선택한 상황·장르·분위기를 가져왔어요. "+(plan.audience?"대상: "+String(plan.audience).slice(0,40)+". ":"")+(plan.voiceUndecided?"목소리 여부는 아직 미정입니다. 아래에서 선택해 주세요.":"내용을 확인한 뒤 진행하세요.");
+history.replaceState(null,"",location.pathname+location.search);
+}
+}
+}catch{ $("handoff").hidden=false;$("handoff").textContent="전달된 기획을 읽지 못했어요. 아래에서 직접 선택해 주세요."; }
+
 </script></html>

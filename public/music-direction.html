@@ -5,7 +5,9 @@ a{color:#61339d}article{padding:22px;margin:20px 0;border:1px solid #ded4eb;bord
 </style></head><body><header><div><div class="brand">♫ 내 음악채널 방향 찾기</div><small>누구의 어떤 시간에 함께하고 싶으세요?</small></div></header><main>
 <div class="notice">채널 방향은 선택한 조건을 바탕으로 한 기획 제안입니다. 최근 영상 검색 결과와 구분해서 보여드립니다.</div>
 <section><h1>어떤 순간을 위한 음악인가요?</h1><form id="form">
-<label for="situation">음악을 듣는 상황</label><select id="situation"><option value="office">사무실에서 일할 때</option><option value="drive">고속도로 운전할 때</option><option value="kids">아이들과 놀 때</option><option value="hobby">컬러링·취미생활을 할 때</option><option value="cafe">카페에서 하루 종일 틀 때</option><option value="sleep">잠들기 전</option><option value="custom">직접 입력</option></select>
+<label for="situation">음악을 듣는 상황</label><select id="situation"><optgroup label="자료에서 확인한 대표 사용 상황"><option value="office">공부하거나 일에 집중할 때</option><option value="relax">하루를 마치고 편안히 쉴 때</option><option value="sleep">잠들기 전이나 수면 중</option><option value="workout">운동·걷기·스트레칭할 때</option><option value="drive">출퇴근·이동·드라이브할 때</option></optgroup><optgroup label="더 구체적인 채널 아이디어"><option value="hobby">독서·컬러링·취미생활을 할 때</option><option value="cafe">카페·매장에 배경음악을 틀 때</option><option value="kids">아이들과 놀이·그림 그리기를 할 때</option></optgroup><option value="custom">직접 입력</option></select>
+<p class="hint">먼저 큰 상황을 골라보세요. 아래 세부 아이디어는 청취 장면을 구체화하기 위한 제안입니다.</p>
+<details><summary>이 상황들은 어떻게 골랐나요?</summary><p>유튜브 공식 자료에서 확인한 사용 목적을 쉬운 말로 묶었습니다. 검색량 순위나 현재 급상승 순위는 아닙니다.</p><ul><li><a href="https://blog.youtube/culture-and-trends/ambient-music/" target="_blank" rel="noopener noreferrer">YouTube 트렌드팀 자료 (2025.12.05)</a>: 수면·휴식·집중을 위한 장시간 음악과 영상의 사용 사례.</li><li><a href="https://blog.youtube/news-and-events/youtube-music-brings-personalization-your-everyday-moods-and-moments/" target="_blank" rel="noopener noreferrer">YouTube Music 공식 자료 (2020.11.09)</a>: 운동·집중·휴식·이동에 맞춘 플레이리스트 분류. 사용 상황의 근거로 참고했으며 현재 화면이나 유행을 뜻하지 않습니다.</li></ul><p>걷기·스트레칭 등 세부 표현과 장르 조합은 이 자료를 바탕으로 만든 기획 제안입니다. 카페 운영·컬러링·아이 놀이의 수요 크기는 별도로 검증하지 않았습니다.</p><p class="hint">자료 확인: 2026.09.15 · 실제 참고 영상은 결과 화면에서 찾아볼 수 있습니다.</p></details>
 <div id="customBox" hidden><label for="custom">어떤 상황인가요?</label><input id="custom" maxlength="80" placeholder="예: 집안일을 하면서"></div>
 <div class="grid"><div><label for="mood">원하는 느낌</label><select id="mood"><option value="warm">따뜻하고 편안하게</option><option value="quiet">차분하고 고요하게</option><option value="bright">경쾌하고 산뜻하게</option></select></div>
 <div><label for="voice">노랫소리</label><select id="voice"><option value="none">악기 연주만</option><option value="female">보컬 포함</option><option value="any">상관없음</option></select></div>
@@ -23,11 +25,13 @@ a{color:#61339d}article{padding:22px;margin:20px 0;border:1px solid #ded4eb;bord
 <script>
 const $=id=>document.getElementById(id);
 const profiles={
-office:{label:"사무실 작업",use:"조용히 집중할 때",genres:["lofi","newage","jazz"],angle:"메일 정리·문서 작업처럼 구체적인 업무 시간을 정해보세요."},
-drive:{label:"드라이브",use:"고속도로 운전할 때",genres:["pop","jazz","newage"],angle:"해안도로·출근길처럼 장면을 좁혀보세요. 졸음 방지 효과를 약속하지 마세요."},
+relax:{label:"휴식",use:"저녁에 편안히 쉴 때",genres:["newage","jazz","lofi"],angle:"퇴근 후 소파·조용한 저녁처럼 쉬는 장면을 하나 정해보세요."},
+workout:{label:"걷기·가벼운 운동",use:"운동·걷기·스트레칭할 때",genres:["pop","jazz","classical"],angle:"산책은 경쾌한 리듬, 스트레칭은 느린 흐름으로 나눠보세요. 이 세 조합은 가벼운 활동용 기획 예시이며 고강도 운동 장르를 모두 다루지는 않습니다."},
+office:{label:"공부·업무 집중",use:"조용히 집중할 때",genres:["lofi","newage","jazz"],angle:"공부·코딩·문서 작업 중 하나로 좁히고, 노랫말이 집중을 방해하지 않는지 직접 들어보세요."},
+drive:{label:"출퇴근·드라이브",use:"출퇴근·이동·드라이브할 때",genres:["pop","jazz","newage"],angle:"해안도로·출근길처럼 장면을 좁혀보세요. 졸음 방지 효과를 약속하지 마세요."},
 kids:{label:"아이들과 놀이",use:"아이들과 놀 때",genres:["pop","newage","classical"],angle:"블록 놀이·그림 그리기처럼 활동을 정하고 실제 아동 대상 여부를 확인하세요."},
 hobby:{label:"컬러링과 취미",use:"색칠하거나 책을 읽을 때",genres:["newage","jazz","lofi"],angle:"컬러링·뜨개질·다꾸 등 한 가지 취미를 중심으로 시작해보세요."},
-cafe:{label:"카페",use:"카페에서 하루 종일 틀 때",genres:["jazz","lofi","pop"],angle:"오픈 준비·오후 대화·마감 시간처럼 카페의 시간대를 나눠보세요."},
+cafe:{label:"카페",use:"카페·매장에 배경음악을 틀 때",genres:["jazz","lofi","pop"],angle:"오픈 준비·오후 대화·마감 시간처럼 카페의 시간대를 나눠보세요."},
 sleep:{label:"잠들기 전",use:"잠들기 전이나 수면 중",genres:["newage","classical","lofi"],angle:"잔잔한 음량과 부드러운 연결을 확인하고 수면 치료 효과는 약속하지 마세요."},
 custom:{label:"나만의 일상",use:"",genres:["newage","jazz","pop"],angle:"듣는 사람의 행동과 원하는 분위기를 함께 설명해보세요."}
 };

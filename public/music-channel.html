@@ -8,9 +8,9 @@
 <div class="grid">
 <div><label for="musicGenre">음악 장르</label><select id="musicGenre"><option value="newage">뉴에이지</option><option value="jazz">재즈</option><option value="lofi">로파이</option><option value="classical">클래식</option><option value="pop">팝</option><option value="custom">직접 입력</option></select></div>
 <div id="customGenreBox" hidden><label for="customGenre">원하는 장르 이름</label><input id="customGenre" maxlength="80" placeholder="예: 보사노바"><label for="customGenreEn">장르 영문 이름</label><input id="customGenreEn" maxlength="100" placeholder="예: Bossa nova" aria-describedby="genreHelp"><p id="genreHelp" class="hint">Suno에 넣을 영문 이름을 함께 적어주세요. 이 체험판은 자동 번역하지 않습니다.</p></div>
-<div><label for="use">언제 듣는 음악인가요?</label><select id="use"><option>색칠하거나 책을 읽을 때</option><option>아침에 차를 마실 때</option><option>저녁에 편안히 쉴 때</option><option>조용히 집중할 때</option><option>잠들기 전이나 수면 중</option></select></div>
+<div><label for="use">언제 듣는 음악인가요?</label><select id="use"><option>하루를 상쾌하게 시작할 때</option><option>색칠하거나 책을 읽을 때</option><option>아침에 차를 마실 때</option><option>저녁에 편안히 쉴 때</option><option>조용히 집중할 때</option><option>잠들기 전이나 수면 중</option></select></div>
 <div><label for="keywordLanguage">검색 키워드 언어</label><select id="keywordLanguage"><option value="ko">한국어</option><option value="en">영어</option><option value="both">한국어 + 영어</option></select></div><div><label for="mood">분위기</label><select id="mood"><option value="warm">따뜻하고 편안하게</option><option value="bright">밝고 산뜻하게</option><option value="quiet">차분하고 고요하게</option></select></div>
-<div><label for="genre">음악 스타일</label><select id="genre"><option value="piano">잔잔한 피아노</option><option value="jazz">부드러운 재즈</option><option value="guitar">어쿠스틱 기타</option><option value="ambient">잔잔한 앰비언트</option></select></div>
+<div><label for="genre">음악 스타일</label><select id="genre"><option value="classical">클래식 연주 · 현악기와 목관악기</option><option value="piano" selected>잔잔한 피아노</option><option value="jazz">부드러운 재즈</option><option value="guitar">어쿠스틱 기타</option><option value="ambient">잔잔한 앰비언트</option></select></div>
 <div><label for="voice">목소리</label><select id="voice"><option value="none">악기 연주만</option><option value="female">여성 보컬</option><option value="male">남성 보컬</option></select></div>
 <div><label for="art">이미지 스타일</label><select id="art"><option>따뜻한 사진풍</option><option>부드러운 수채화</option><option>단순한 손그림</option></select></div>
 <div><label for="color">색감</label><select id="color"><option>크림색과 보라색</option><option>흰색과 초록색</option><option>남색과 은은한 금색</option></select></div></div>
@@ -21,17 +21,24 @@
 <div class="notice" style="margin-top:24px"><strong>첫 곡 다음에도 같은 스타일로 이어가세요.</strong><p>전체 결과를 내려받은 뒤, 다음 작업실에서 텍스트 파일을 올려주세요.</p><a href="playlist-continue.html" style="color:#61339d;font-weight:700">이 스타일로 플레이리스트 이어 만들기 →</a></div><footer>입력 내용은 서버로 전송하지 않습니다. 새로고침 전에 결과를 내려받으세요.</footer></main><div id="status" role="status" aria-live="polite" hidden></div><script>
 "use strict";
 const $=id=>document.getElementById(id);
-const concepts=[
+let concepts=[
 ["오후의 그림쉼","afternoon-art-rest","햇살이 비치는 창가, 책과 색연필, 차 한 잔","찻잔과 펼친 책"],
 ["초록빛 음악정원","green-music-garden","나무 그늘과 정원이 보이는 조용한 테라스","잎사귀와 작은 음표"],
 ["하루 끝 작은 쉼","day-end-music","은은한 조명의 창가와 편안한 의자","작은 달과 음표"]];
-const genres={piano:["잔잔한 피아노","gentle solo piano"],jazz:["부드러운 재즈","soft jazz, mellow piano, warm upright bass, delicate brushed drums"],guitar:["어쿠스틱 기타","warm acoustic guitar, delicate fingerpicking"],ambient:["잔잔한 앰비언트","soft ambient, warm pads, subtle textures, no percussion"]};
+const defaultConcepts=concepts;
+const morningConcepts=[
+["햇살 여는 아침","sunlit-morning","맑은 아침 햇살이 들어오는 창가와 새잎, 열린 커튼","떠오르는 해와 작은 음표"],
+["모닝 커피 멜로디","morning-coffee-melody","아침 빛이 비치는 밝은 테라스와 커피 한 잔","커피잔과 아침 햇살"],
+["오늘의 산뜻한 시작","fresh-day-start","푸른 하늘 아래 아침 정원과 햇살이 비치는 산책길","새잎과 작은 해"]];
+function isMorning(use){return use==="하루를 상쾌하게 시작할 때"||use==="아침에 차를 마실 때"}
+const genres={classical:["클래식 연주","classical chamber ensemble, lyrical strings, light woodwinds, balanced acoustic arrangement"],piano:["잔잔한 피아노","gentle solo piano"],jazz:["부드러운 재즈","soft jazz, mellow piano, warm upright bass, delicate brushed drums"],guitar:["어쿠스틱 기타","warm acoustic guitar, delicate fingerpicking"],ambient:["잔잔한 앰비언트","soft ambient, warm pads, subtle textures, no percussion"]};
 const musicGenres={newage:["뉴에이지","new age"],jazz:["재즈","jazz"],lofi:["로파이","lo-fi"],classical:["클래식","classical"],pop:["팝","pop"]};
 function resolveGenre(v,label,en){if(v!=="custom")return musicGenres[v];return [label.trim(),en.trim()]}
 const moods={warm:["따뜻하고 편안한","warm and comforting, slow relaxed pace"],bright:["밝고 산뜻한","bright and fresh, gentle moderate pace"],quiet:["차분하고 고요한","calm and serene, very slow pace"]};
 
 function searchKeywords(st,sg){
 const purpose={
+"하루를 상쾌하게 시작할 때":[["아침 음악","상쾌한 아침 음악","모닝 플레이리스트"],["morning music","fresh morning music","morning playlist"]],
 "출퇴근·이동·드라이브할 때":[["출근길 음악","드라이브 음악","퇴근길 플레이리스트"],["commute music","driving music","commute playlist"]],
 "고속도로 운전할 때":[["드라이브 음악","운전할 때 듣는 음악"],["driving music","road trip playlist"]],
 "운동·걷기·스트레칭할 때":[["산책 음악","걷기 음악","스트레칭 음악"],["walking music","light workout music","stretching music"]],
@@ -50,7 +57,7 @@ lofi:[["로파이 음악","로파이 플레이리스트"],["lofi music","lofi pl
 classical:[["클래식 음악","클래식 플레이리스트"],["classical music","classical playlist"]],
 pop:[["팝 음악","팝 플레이리스트"],["pop music","pop playlist"]]
 };
-const sound={piano:[["피아노 음악","잔잔한 피아노"],["piano music","soft piano music"]],jazz:[["잔잔한 재즈"],["soft jazz"]],guitar:[["어쿠스틱 기타 음악"],["acoustic guitar music"]],ambient:[["앰비언트 음악"],["ambient music"]]};
+const sound={classical:[["클래식 연주","실내악","현악 음악"],["classical ensemble","chamber music","string music"]],piano:[["피아노 음악","잔잔한 피아노"],["piano music","soft piano music"]],jazz:[["잔잔한 재즈"],["soft jazz"]],guitar:[["어쿠스틱 기타 음악"],["acoustic guitar music"]],ambient:[["앰비언트 음악"],["ambient music"]]};
 const mood={warm:[["편안한 음악"],["comforting music"]],bright:[["산뜻한 음악"],["gentle uplifting music"]],quiet:[["잔잔한 음악"],["calm music"]]};
 const p=purpose[st.use]||purpose["저녁에 편안히 쉴 때"],g=genre[st.musicGenre]||[[sg[0]],[sg[1]]],a=sound[st.genre],m=mood[st.mood];
 const ko=[...p[0],...g[0],...a[0],...m[0]],en=[...p[1],...g[1],...a[1],...m[1]];
@@ -67,6 +74,8 @@ $("musicGenre").onchange=()=>{const custom=$("musicGenre").value==="custom";$("c
 $("form").onsubmit=e=>{e.preventDefault();$("error").textContent="";const link=$("url").value.trim();if(link){try{const u=new URL(link);if(!["http:","https:"].includes(u.protocol)||!(u.hostname==="youtu.be"||u.hostname==="youtube.com"||u.hostname.endsWith(".youtube.com")))throw Error()}catch{$("error").textContent="유튜브 링크를 확인하거나 비우고 진행해 주세요.";$("url").focus();return}}
 if($("musicGenre").value==="custom"){const label=$("customGenre").value.trim(),en=$("customGenreEn").value.trim();if(!label||!en||!/[A-Za-z]/.test(en)||!/^[A-Za-z0-9 ,.&'()\/-]+$/.test(en)){$("error").textContent="장르 이름과 영문 이름을 입력해 주세요. 영문 이름에는 영어 알파벳을 사용해 주세요.";$("customGenreEn").focus();return}}
 ["url","use","mood","genre","voice","art","color","note","musicGenre","customGenre","customGenreEn","keywordLanguage"].forEach(id=>state[id]=$(id).value.trim());
+const nextConcepts=isMorning(state.use)?morningConcepts:defaultConcepts;
+if(concepts!==nextConcepts){if(concepts.some(c=>c[0]===$("name").value))$("name").value="";chosen=0;concepts=nextConcepts}
 $("choices").replaceChildren();concepts.forEach((c,i)=>{const l=document.createElement("label");l.className="choice";const r=document.createElement("input");r.type="radio";r.name="concept";r.checked=i===chosen;r.onchange=()=>{chosen=i;$("name").value=c[0]};const b=document.createElement("strong");b.textContent=c[0];const d=document.createElement("small");d.textContent=c[2];l.append(r,b,d);$("choices").append(l)});if(!$("name").value)$("name").value=concepts[chosen][0];step(2)};
 $("back1").onclick=()=>step(1);$("back2").onclick=()=>step(2);
 function group(title,open){const d=document.createElement("details");d.open=!!open;const s=document.createElement("summary");s.textContent=title;d.append(s);$("results").append(d);return d}
@@ -74,7 +83,8 @@ function item(parent,title,text,help=""){const box=document.createElement("div")
 $("make").onclick=()=>{const name=$("name").value.trim();if(!name){toast("채널 이름을 입력하세요.");$("name").focus();return}
 const selectedGenre=resolveGenre(state.musicGenre,state.customGenre,state.customGenreEn);
 const c=concepts[chosen],g=genres[state.genre],m=moods[state.mood],extra=state.note?"\n추가 요청: "+state.note:"";
-const visual=state.art+", "+state.color+", "+m[0]+" 분위기. 기존 채널 이미지나 로고를 복제하지 않기.";
+const visual=(isMorning(state.use)?"맑은 아침 자연광, 산뜻한 하루의 시작. ":"")+state.art+", "+state.color+", "+m[0]+" 분위기. 기존 채널 이미지나 로고를 복제하지 않기.";
+const musicMood=isMorning(state.use)?(state.mood==="quiet"?"calm clear morning mood, unhurried flowing pace":state.mood==="warm"?"warm optimistic morning mood, light flowing moderate pace":"bright uplifting morning mood, fresh lively moderate pace"):m[1];
 const vocal=state.voice==="none"?"instrumental only, no vocals, no humming":state.voice==="female"?"soft female lead vocal":"soft male lead vocal";
 fields=[];$("results").replaceChildren();$("heading").textContent=name;$("summary").textContent=state.use+" 듣는 "+m[0]+" "+selectedGenre[0]+" · "+g[0];
 let keywords=group("채널 검색 키워드 · 복사해서 사용하세요",true);
@@ -91,8 +101,8 @@ item(d,"프로필 이미지 프롬프트","유튜브 프로필 이미지를 만�
 item(d,"배너 이미지 프롬프트","유튜브 채널 배너 배경을 만들어줘.\n"+visual+"\n장면: "+c[2]+". 가로 16:9. 주요 요소는 중앙에 모으고 채널명을 넣을 여백 확보. 가장자리는 단순하게. 글자 없음."+extra,"제작 후 채널명을 넣고 기기별 잘림 미리보기를 확인하세요.");
 d=group("③ 첫 음악 만들기");
 item(d,"곡 제목 후보",c[0]+"의 첫 멜로디\n"+m[0]+" 순간\n잠시 머무는 시간");
-item(d,"Suno 프롬프트",selectedGenre[1]+", "+g[1]+", "+m[1]+", "+vocal+", balanced gentle dynamics, smooth transitions, natural ending, original composition, no imitation of a specific artist."+(state.use==="잠들기 전이나 수면 중"?" Intended for sleep, consistent gentle volume, no abrupt changes or strong percussive accents.":""),"영어로 작성된 음악 요청문입니다. Suno 스타일 입력란에 붙여넣으세요. 이미지 취향은 포함되지 않습니다.");
-if(state.voice!=="none")item(d,"가사 작성 요청문","새로운 한국어 노래 가사를 써줘. 주제는 일상 속 휴식, 분위기는 "+m[0]+". 1절·후렴·2절·후렴 구조로 짧게. 기존 노래 가사를 인용하지 마.","ChatGPT에서 가사를 작성하고 검토한 뒤 Suno에 입력하세요.");
+item(d,"Suno 프롬프트",selectedGenre[1]+", "+g[1]+", "+musicMood+", "+vocal+", balanced gentle dynamics, smooth transitions, natural ending, original composition, no imitation of a specific artist."+(state.use==="잠들기 전이나 수면 중"?" Intended for sleep, consistent gentle volume, no abrupt changes or strong percussive accents.":isMorning(state.use)?" Fresh start to the day, clear melodic phrasing, light buoyant movement.":""),"영어로 작성된 음악 요청문입니다. Suno 스타일 입력란에 붙여넣으세요. 이미지 취향은 포함되지 않습니다.");
+if(state.voice!=="none")item(d,"가사 작성 요청문","새로운 한국어 노래 가사를 써줘. 주제는 "+(isMorning(state.use)?"아침 햇살과 새로운 하루의 시작":"일상 속 휴식")+", 분위기는 "+m[0]+". 1절·후렴·2절·후렴 구조로 짧게. 기존 노래 가사를 인용하지 마.","ChatGPT에서 가사를 작성하고 검토한 뒤 Suno에 입력하세요.");
 d=group("④ 영상 배경과 썸네일");
 item(d,"영상 배경 프롬프트","음악 영상 배경 이미지를 만들어줘.\n"+visual+"\n장면: "+c[2]+". 가로 16:9. 사람 없이 오래 보아도 편안한 구도. 글자와 로고 없음."+extra);
 item(d,"썸네일 이미지 프롬프트","음악 영상 썸네일 배경을 만들어줘.\n"+visual+"\n장면: "+c[2]+". 가로 16:9. 피사체를 오른쪽에 놓고 왼쪽은 큰 제목을 넣도록 단순하게 비워줘. 글자 없음."+extra);

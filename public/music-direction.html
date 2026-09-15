@@ -1,0 +1,67 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>내 음악채널 방향 찾기</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f7f4fb;color:#30243d;font:18px/1.7 system-ui,sans-serif}header{background:#fff;border-bottom:1px solid #ded4eb;padding:22px}main,header>div{max-width:900px;margin:auto}main{padding:24px 20px 70px}h1{font-size:32px;line-height:1.4}h2{font-size:24px}small,.hint{font-size:16px;color:#655870}.brand{color:#61339d;font-size:24px;font-weight:800}.notice{padding:16px;background:#ede5f7;border-radius:12px}.steps{display:flex;gap:8px;margin:24px 0}.steps span{flex:1;text-align:center;padding:10px;background:#e7e0ed;border-radius:10px}.steps .active{background:#61339d;color:white}section{background:white;border:1px solid #ded4eb;border-radius:20px;padding:26px}label{display:block;font-weight:700;margin:18px 0 6px}input,select,textarea{width:100%;font:inherit;padding:12px;border:1px solid #ad9abc;border-radius:10px;background:white;color:inherit}textarea{min-height:100px;resize:vertical}button{font:inherit;font-weight:700;background:#61339d;color:white;border:1px solid #61339d;border-radius:10px;padding:12px 20px;min-height:50px;cursor:pointer}button.alt{background:white;color:#61339d}.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}.choice{border:2px solid #ddd1e8;padding:16px;border-radius:12px;cursor:pointer}.choice:has(input:checked){border-color:#61339d;background:#f7f0ff}.choice input{width:22px;height:22px;accent-color:#61339d}.choice strong{display:block;font-size:22px}.choice small{display:block}details{padding:18px;border:1px solid #ded4eb;border-radius:12px;margin:16px 0}summary{font-weight:700;font-size:21px;cursor:pointer}.out button{margin:8px 0 18px}.out textarea{font-size:17px}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #ce9415;outline-offset:3px}[hidden]{display:none!important}#status{position:fixed;bottom:18px;left:5%;width:90%;background:#30243d;color:white;padding:12px;border-radius:12px;text-align:center}footer{margin-top:24px;font-size:16px;color:#655870}@media(max-width:600px){.grid{grid-template-columns:1fr}section{padding:18px}h1{font-size:27px}.steps span{font-size:16px;padding:10px 3px}}
+
+a{color:#61339d}article{padding:22px;margin:20px 0;border:1px solid #ded4eb;border-radius:16px;background:white}article h2{margin-top:0}.video img{width:240px;max-width:100%;border-radius:12px}.badge{background:#ece4f6;padding:5px 10px;border-radius:8px}#cards{margin-top:24px}.error{color:#a22339}button:disabled{opacity:.5}a.button{display:inline-block;border:1px solid #61339d;border-radius:10px;padding:12px;margin:8px 8px 8px 0;text-decoration:none;font-weight:700}
+</style></head><body><header><div><div class="brand">♫ 내 음악채널 방향 찾기</div><small>누구의 어떤 시간에 함께하고 싶으세요?</small></div></header><main>
+<div class="notice">채널 방향은 선택한 조건을 바탕으로 한 기획 제안입니다. 검색어를 복사하거나 버튼을 눌러 유튜브에서 참고 영상을 찾아보세요.</div>
+<section><h1>어떤 순간을 위한 음악인가요?</h1><form id="form">
+<label for="situation">음악을 듣는 상황</label><select id="situation"><optgroup label="자료에서 확인한 대표 사용 상황"><option value="office">공부하거나 일에 집중할 때</option><option value="relax">하루를 마치고 편안히 쉴 때</option><option value="sleep">잠들기 전이나 수면 중</option><option value="workout">운동·걷기·스트레칭할 때</option><option value="drive">출퇴근·이동·드라이브할 때</option></optgroup><optgroup label="더 구체적인 채널 아이디어"><option value="morning">하루를 상쾌하게 시작할 때</option><option value="hobby">독서·컬러링·취미생활을 할 때</option><option value="cafe">카페·매장에 배경음악을 틀 때</option><option value="kids">아이들과 놀이·그림 그리기를 할 때</option></optgroup><option value="custom">직접 입력</option></select>
+<p class="hint">먼저 큰 상황을 골라보세요. 아래 세부 아이디어는 청취 장면을 구체화하기 위한 제안입니다.</p>
+<details><summary>이 상황들은 어떻게 골랐나요?</summary><p>유튜브 공식 자료에서 확인한 사용 목적을 쉬운 말로 묶었습니다. 검색량 순위나 현재 급상승 순위는 아닙니다.</p><ul><li><a href="https://blog.youtube/culture-and-trends/ambient-music/" target="_blank" rel="noopener noreferrer">YouTube 트렌드팀 자료 (2025.12.05)</a>: 수면·휴식·집중을 위한 장시간 음악과 영상의 사용 사례.</li><li><a href="https://blog.youtube/news-and-events/youtube-music-brings-personalization-your-everyday-moods-and-moments/" target="_blank" rel="noopener noreferrer">YouTube Music 공식 자료 (2020.11.09)</a>: 운동·집중·휴식·이동에 맞춘 플레이리스트 분류. 사용 상황의 근거로 참고했으며 현재 화면이나 유행을 뜻하지 않습니다.</li></ul><p>걷기·스트레칭 등 세부 표현과 장르 조합은 이 자료를 바탕으로 만든 기획 제안입니다. 아침 음악·카페 운영·컬러링·아이 놀이의 수요 크기는 별도로 검증하지 않았습니다.</p><p class="hint">자료 확인: 2026.09.15 · 실제 참고 영상은 결과 화면에서 찾아볼 수 있습니다.</p></details>
+<div id="customBox" hidden><label for="custom">어떤 상황인가요?</label><input id="custom" maxlength="80" placeholder="예: 집안일을 하면서"></div>
+<div class="grid"><div><label for="mood">원하는 느낌</label><select id="mood"><option value="warm">따뜻하고 편안하게</option><option value="quiet">차분하고 고요하게</option><option value="bright">경쾌하고 산뜻하게</option></select></div>
+<div><label for="voice">노랫소리</label><select id="voice"><option value="none">악기 연주만</option><option value="female">보컬 포함</option><option value="any">상관없음</option></select></div>
+<div><label for="audience">주로 들려줄 사람</label><select id="audience"><option>성인</option><option>중장년</option><option>어린이·가족</option></select></div></div>
+<p id="error" role="alert" class="error"></p><div class="row"><button>채널 방향 3가지 살펴보기 →</button></div>
+</form></section>
+<div id="results" hidden><h1 id="resultHeading" tabindex="-1">나에게 맞는 채널 방향</h1><p id="selection"></p><p class="hint">장르를 추천하는 기획 예시입니다. 인기 순위나 실제 음원 분석 결과가 아닙니다.</p><div id="cards"></div>
+<section><h2>유튜브에서 참고 영상 찾아보기</h2><p id="connection">아래 검색어로 원하는 음악을 찾아보세요. 별도의 연결 설정은 필요하지 않아요.</p>
+<label for="query">유튜브에 넣을 검색어 · 직접 수정할 수 있어요</label><textarea id="query" maxlength="200" rows="2"></textarea>
+<div class="row"><button id="copyQuery" type="button">검색어 복사</button><a class="button" id="youtube" target="_blank" rel="noopener noreferrer">유튜브에서 바로 검색 ↗</a></div>
+<p id="searchStatus" role="status" aria-live="polite"></p>
+<ol><li>‘검색어 복사’를 누르세요.</li><li>유튜브 앱이나 사이트의 검색창에 붙여넣으세요. 컴퓨터에서는 Ctrl + V, 휴대폰에서는 검색창을 길게 누른 뒤 ‘붙여넣기’를 선택하세요.</li><li>검색 결과에서 마음에 드는 영상을 들어보세요.</li></ol>
+<p class="hint">‘유튜브에서 바로 검색’을 누르면 복사 없이 검색 결과가 새 창으로 열립니다. 검색 결과는 유튜브에서 확인하며, 이 앱이 인기 순위를 분석하지는 않습니다.</p></section></div>
+<footer><a href="music-channel.html">음악채널 작업실로 바로 가기 →</a><p>입력한 기획은 자동 저장되지 않습니다. 바로 검색을 누르면 검색어가 포함된 유튜브 페이지가 열립니다.</p></footer></main>
+<script>
+const $=id=>document.getElementById(id);
+const profiles={
+morning:{label:"상쾌한 아침",use:"하루를 상쾌하게 시작할 때",genres:["classical","jazz","pop"],angle:"기상 후·아침 커피·출근 준비 중 하나를 정하고, 밝고 가벼운 흐름으로 하루의 시작을 표현해보세요."},
+relax:{label:"휴식",use:"저녁에 편안히 쉴 때",genres:["newage","jazz","lofi"],angle:"퇴근 후 소파·조용한 저녁처럼 쉬는 장면을 하나 정해보세요."},
+workout:{label:"걷기·가벼운 운동",use:"운동·걷기·스트레칭할 때",genres:["pop","jazz","classical"],angle:"산책은 경쾌한 리듬, 스트레칭은 느린 흐름으로 나눠보세요. 이 세 조합은 가벼운 활동용 기획 예시이며 고강도 운동 장르를 모두 다루지는 않습니다."},
+office:{label:"공부·업무 집중",use:"조용히 집중할 때",genres:["lofi","newage","jazz"],angle:"공부·코딩·문서 작업 중 하나로 좁히고, 노랫말이 집중을 방해하지 않는지 직접 들어보세요."},
+drive:{label:"출퇴근·드라이브",use:"출퇴근·이동·드라이브할 때",genres:["pop","jazz","newage"],angle:"해안도로·출근길처럼 장면을 좁혀보세요. 졸음 방지 효과를 약속하지 마세요."},
+kids:{label:"아이들과 놀이",use:"아이들과 놀 때",genres:["pop","newage","classical"],angle:"블록 놀이·그림 그리기처럼 활동을 정하고 실제 아동 대상 여부를 확인하세요."},
+hobby:{label:"컬러링과 취미",use:"색칠하거나 책을 읽을 때",genres:["newage","jazz","lofi"],angle:"컬러링·뜨개질·다꾸 등 한 가지 취미를 중심으로 시작해보세요."},
+cafe:{label:"카페",use:"카페·매장에 배경음악을 틀 때",genres:["jazz","lofi","pop"],angle:"오픈 준비·오후 대화·마감 시간처럼 카페의 시간대를 나눠보세요."},
+sleep:{label:"잠들기 전",use:"잠들기 전이나 수면 중",genres:["newage","classical","lofi"],angle:"잔잔한 음량과 부드러운 연결을 확인하고 수면 치료 효과는 약속하지 마세요."},
+custom:{label:"나만의 일상",use:"",genres:["newage","jazz","pop"],angle:"듣는 사람의 행동과 원하는 분위기를 함께 설명해보세요."}
+};
+const genres={newage:{name:"뉴에이지",style:"piano",reason:"단순한 선율을 중심으로 편안한 배경을 구상하기 좋습니다."},jazz:{name:"재즈",style:"jazz",reason:"부드러운 리듬과 따뜻한 분위기를 구상할 수 있습니다."},lofi:{name:"로파이",style:"ambient",reason:"반복되는 잔잔한 흐름을 중심으로 구성해볼 수 있습니다."},classical:{name:"클래식",style:"classical",reason:"어쿠스틱 악기와 차분한 연주 중심으로 기획할 수 있습니다."},pop:{name:"팝",style:"guitar",reason:"선명한 멜로디를 중심으로 친숙한 분위기를 구상할 수 있습니다."}};
+let current=null;
+function queryLink(){$("youtube").href="https://www.youtube.com/results?search_query="+encodeURIComponent($("query").value)}
+$("query").oninput=()=>{queryLink();$("searchStatus").textContent=""};
+$("situation").onchange=()=>{const custom=$("situation").value==="custom";$("customBox").hidden=!custom;$("custom").required=custom;if(custom)$("custom").focus()};
+
+$("form").onsubmit=e=>{e.preventDefault();$("error").textContent="";const key=$("situation").value,p={...profiles[key]},mood=$("mood").value,voice=$("voice").value,audience=$("audience").value;
+if(key==="custom"){p.label=$("custom").value.trim();p.use=p.label;if(!p.label){$("error").textContent="음악을 들을 상황을 입력해 주세요.";return}}
+current={p,mood,voice,audience};$("results").hidden=false;$("cards").replaceChildren();$("searchStatus").textContent="";
+$("selection").textContent=p.label+" · "+audience+" · "+$("mood").selectedOptions[0].text+" · "+$("voice").selectedOptions[0].text;
+p.genres.forEach((g,i)=>{const def=genres[g],card=document.createElement("article"),badge=document.createElement("span"),h=document.createElement("h2"),why=document.createElement("p"),angle=document.createElement("p");
+badge.className="badge";badge.textContent="방향 "+(i+1);h.textContent=p.label+"을 위한 "+def.name;why.textContent=def.reason+" 대상: "+audience+". 원하는 느낌: "+$("mood").selectedOptions[0].text+".";angle.textContent="차별화 아이디어: "+p.angle;
+const q=p.label+" "+def.name+" "+(voice==="none"?"가사 없는 ":"")+"플레이리스트";
+const browse=document.createElement("button");browse.className="alt";browse.textContent="이 방향의 참고 영상 찾기";browse.onclick=()=>{$("query").value=q;queryLink();$("query").focus();$("connection").scrollIntoView({behavior:"smooth"})};
+const go=document.createElement("a");go.className="button";go.textContent="이 방향으로 내 채널 준비하기 →";
+go.href="music-channel.html#plan="+encodeURIComponent(JSON.stringify({use:p.use,musicGenre:g,genre:key==="sleep"&&g==="newage"?"ambient":def.style,mood,voice:voice==="any"?"none":voice,audience,name:p.label+" 음악쉼",fromDirection:true,voiceUndecided:voice==="any"}));
+const hint=document.createElement("p");hint.className="hint";hint.textContent="선택한 상황·장르·분위기를 작업실로 가져갑니다."+(voice==="any"?" 목소리는 작업실에서 다시 선택하세요.":"");
+card.append(badge,h,why,angle,browse,go,hint);$("cards").append(card);
+});
+$("query").value=p.label+" "+(voice==="none"?"가사 없는 ":"")+"음악 플레이리스트";queryLink();$("resultHeading").focus();
+};
+$("copyQuery").onclick=async()=>{
+const q=$("query").value.trim();
+if(!q){$("searchStatus").textContent="먼저 검색어를 입력해 주세요.";$("query").focus();return}
+try{await navigator.clipboard.writeText(q);$("searchStatus").textContent="검색어를 복사했어요. 유튜브 검색창에 붙여넣으세요."}
+catch{$("query").focus();$("query").select();$("searchStatus").textContent="자동 복사가 되지 않았어요. 선택된 검색어를 Ctrl + C로 복사하거나, 길게 눌러 복사하세요."}
+};
+$("youtube").onclick=e=>{if(!$("query").value.trim()){e.preventDefault();$("searchStatus").textContent="먼저 검색어를 입력해 주세요.";$("query").focus()}};
+</script></body></html>
